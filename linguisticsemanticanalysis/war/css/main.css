@@ -1,0 +1,170 @@
+.container {
+	background-color: #DDDDDD;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Tahoma;
+	background-color: #DDDDDD;
+}
+
+#body {
+	width: 800px;
+	text-align: center;
+	vertical-align: top;
+	background-color: #FFFFFF;
+	border-left: 0.5px solid #999999;
+	border-right: 0.5px solid #999999;
+}
+
+.lsaHeader {
+	font-size: xx-large;
+	font-weight: bold;
+	text-align: left;
+	color: #f7a302;
+}
+
+#empower {
+	font-size: small;
+	font-weight: bold;
+	text-align: left;
+	color: gray;
+	padding: 2px 0px 0px 110px;
+}	
+
+#contentBox {
+	margin-top: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+.boundBox {
+	width: 234px;
+	height: 243px;
+	padding: 2px;
+	margin: 0px 5px 0px 5px;
+}
+
+.imgBound {
+	height: 200px;
+	width: 230px;
+	padding: 5px 0px 5px 0; 
+}
+
+.lblModule {
+	height: 25px;
+	width: 232px;
+	margin: 2px 0px 0px 0px;
+	color: #FFFFFF; 
+	vertical-align: middle;
+	font-size: medium;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 4px;
+}
+
+div a:link {text-decoration: none; color:#FFFFFF;} /* unvisited link */
+div a:visited {text-decoration: none; color:#FFFFFF;} /* visited link */
+div a:hover {text-decoration: none; color:#FF0000;} /* mouse over link */
+div a:active {text-decoration: none; color:#FFFFFF;} /* selected link */
+
+.boundBoxSentiment {
+	border: 4px solid #ffc100;
+}
+
+.imgSentimentBound {
+	border: 1px solid #ffc100;
+}
+
+.lblSentiment {
+	background-color: #ffc100;
+}
+
+.boundBoxCluster {
+	border: 4px solid #6fa005;
+}
+
+.imgClusterBound {
+	border: 1px solid #6fa005;
+}
+
+.lblCluster {
+	background-color: #6fa005;
+}
+
+.boundBoxDatabase {
+	border: 4px solid #507cba;
+}
+
+.imgDatabaseBound {
+	border: 1px solid #507cba;
+}
+
+.lblDatabase {
+	background-color: #507cba;
+}
+
+.spacer10 {
+	height: 10px;
+	width: 10px;
+}
+
+.moreBox {
+	width: 240px;
+	height: 200px;
+	padding: 2px;
+	margin: 0px 5px 0px 5px;
+	border: 1px solid #CCCCCC;
+}
+
+ul {
+	padding: 10px 10px 10px 20px;
+}
+
+ul li{
+	list-style: square;
+	padding-bottom: 20px;
+	font-size: small;
+}
+
+li a:link {color:#FF0000;} /* unvisited link */
+li a:visited {color:#9999FF;} /* visited link */
+li a:hover {color:#4444FF;} /* mouse over link */
+li a:active {color:#0000FF;} /* selected link */
+
+#footer {
+	text-align: right;
+	width: 100%;
+	font-size: smaller;
+	padding: 0px 10px 4px 0px;
+	color: #CCCCCC;
+}
+
+/** Sentiment Analysis JSP page styles **/
+.txtInput {
+	width: 300px;
+	outline: #7777FF solid 0.5px;
+	color: #AAAAFF;
+	font-size: small;
+	height: 18px;
+}
+
+#searchForm {
+	padding: 10px 5px 5px 5px;
+}
+
+.btnSearch {
+	background:#FFFFFF url(../images/common/btnSearch.png);
+	background-position: 2px ;
+	border:0 none;
+	cursor:pointer;
+	display:block;
+	height:24px;
+	outline: #7777FF solid 0.5px;
+	padding:1;
+	right:0;
+	top:0;
+	width:24px;
+	z-index:2;
+}

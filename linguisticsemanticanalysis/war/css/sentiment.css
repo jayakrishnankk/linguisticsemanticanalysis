@@ -1,0 +1,28 @@
+div .movieReviewContainer {
+	font-size:smaller;
+	padding:20px 25px;
+	text-align:left;
+}
+
+.formItem{
+	padding-bottom: 4px;
+}
+
+#txtMovieName {
+	width: 630px;
+}
+
+#moviewReviewContent {
+	padding-bottom: 10px;
+}
+
+.warning {
+	background-color:LemonChiffon;
+	font-size:smaller;
+}
+
+.infoIcon {
+	height: 16px;
+	width: 16px;
+	background-image: url(../images/common/info_icon.jpg);
+}

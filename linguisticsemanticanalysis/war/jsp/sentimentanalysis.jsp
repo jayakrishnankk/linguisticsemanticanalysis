@@ -6,105 +6,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sentiment Analysis</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
-<script src="http://yui.yahooapis.com/2.8.0r4/build/yuiloader/yuiloader-min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/sentiment.css" />
 <script type="text/javascript">
-	var loader = new YAHOO.util.YUILoader({
-	 
-	    // Identify the components you want to load.  Loader will automatically identify
-	    // any additional dependencies required for the specified components.
-	    require: ["connection", "json"],
-	 
-	    // Configure loader to pull in optional dependencies.  For example, animation
-	    // is an optional dependency for slider.
-	    loadOptional: true,
-	 
-	    // The function to call when all script/css resources have been loaded
-	    onSuccess: function() {
-	        //this is your callback function; you can use
-	        //this space to call all of your instantiation
-	        //logic for the components you just loaded.
-	    },
-	 
-	    // Configure the Get utility to timeout after 10 seconds for any given node insert
-	    timeout: 10000,
-	 
-	    // Combine YUI files into a single request (per file type) by using the Yahoo! CDN combo service.
-	    combine: true
-	});
-	 
-	// Load the files using the insert() method. The insert method takes an optional
-	// configuration object, and in this case we have configured everything in
-	// the constructor, so we don't need to pass anything to insert().
-	loader.insert();
-
-</script>
-<script type="text/javascript">
-	function txtSearchFocusIn() {
-		if (document.searchForm.txtSearchTerm.value == "Enter Movie Name") {
-			document.searchForm.txtSearchTerm.value = "";
-		}
-		document.searchForm.txtSearchTerm.style.color = "#000000";
+	function findSentiment() {
+		alert('find sentiment');
 	}
 
-	function txtSearchFocusOut() {
-		if (document.searchForm.txtSearchTerm.value == "") {
-			document.searchForm.txtSearchTerm.value = "Enter Movie Name";
-		}
-		document.searchForm.txtSearchTerm.style.color = "#AAAAFF";
+	function saveForBatchProcessing() {
+		alert('save for batch processing');
 	}
 
-	function txtSearchKeyup(e) {
-		var keycode;
-		if (window.event) keycode = window.event.keyCode;
-		else if (e) keycode = e.which;
-		else return true;
-
-		if (keycode == 13)
-		{
-			sendReviewRequest();
-		   	return false;
-		}
-		else
-		   return true;
-	}
-	
-	function sendReviewRequest() {
-		var searchTerm = document.searchForm.txtSearchTerm.value;
-		var url = "getAPIResults.jsp?movieName="+searchTerm;
-		var transaction = YAHOO.util.Connect.asyncRequest('GET', url, handleAPIResult, null);
-	}
-	
-	function getReviewContent(url) {
-		var transaction = YAHOO.util.Connect.asyncRequest('GET', url, handleReviewResult, null);
+	function assignPositive() {
+		alert('assign positive');
 	}
 
-	var handleReviewResult = {
-		success: function(o) {
-			alert(o.responseText);
-		},
-	  	failure: function(o) {
-			alert(o.responseText+"123");
-		},
-	  	argument: []
-	};
+	function assignNegative() {
+		alert('assign negative');
+	}
 
-	var handleAPIResult = {
-		success: function(o) {
-			var responseXML = o.responseXML;
-			var reviews = responseXML.firstChild.getElementsByTagName("review");
-			var reviewsArray = [];
-			for (var i=0; i< reviews.length; i++) {
-				reviewsArray.push(reviews[i].getElementsByTagName("link")[0].getElementsByTagName("url")[0].textContent);
-			}
-			alert(reviewsArray.join("\n"));
-			getReviewContent(reviewsArray[0]);
-		},
-	  	failure: function(o) {
-			alert(o.responseText);
-		},
-	  	argument: []
-	};
-	
+	function rebuildModel() {
+		alert('rebuild model');
+	}
+
+	function gotoDBAnalysis() {
+		alert('view database analysis');
+	}
 </script>
 </head>
 <body>
@@ -114,27 +40,70 @@
 	<jsp:include page="common/header.jsp">
 		<jsp:param value="" name=""/>
 	</jsp:include>
-	<div id="searchForm">
-		<form name="searchForm">
-			<table width="100%" height="100%" cellpadding="0" cellspacing="0" align="left">
-				<tr align="left">
-					<td width="100">&nbsp;</td>
-					<td width="300">
-						<input type="text" name="txtSearchTerm" class="txtInput" value="Enter Movie Name"
-							onfocus="txtSearchFocusIn()" onblur="txtSearchFocusOut()" onkeyup="txtSearchKeyup(event)"/>
-					</td>
-					<td><input type="button" class="btnSearch" onclick="sendReviewRequest()"/></td>
-				</tr>
-			</table>	
-		</form>
+	<div class="spacer10"></div>
+	<div class="movieReviewContainer">
+		<div id="moviewReviewContent">
+			<div class="formItem">
+				<span class="bold">Movie name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span><input type="text" id="txtMovieName" name="txtMovieName" /> </span>
+			</div>
+			<div class="bold">Review Content:</div>
+			<div>
+				<textarea rows="10" cols="90" name="txtReviewContent"></textarea>
+			</div>
+		</div>
+		<div>
+			<span><input type="button" value="Find Sentiment" onclick="findSentiment()"></span>
+			<span id="sentimentIconHolder"></span>
+		</div>
+		<div class="spacer10"></div>
+		<div class="spacer10"></div>
+		<div class="spacer10"></div>
+		<div class="wrongSentimentDialog">
+			Do you think the sentiment shown above is wrong?
+			Click on Positive if you think the sentiment is positive.
+			Click on Negative if you think the sentiment is negative.
+		</div>
+		<div class="warning">
+			If you press this button, this movie review will go into the training schema. 
+			Please take care while selecting this because it may affect the further sentiment analysis.
+			Hence, make your selection only if you are absolutely sure that you are selecting the correct sentiment.
+		</div>
+		<div>
+			<input type="button" value="Positive" onclick="assignPositive()"/> 
+			<span class="spacer10">&nbsp;</span>
+			<input type="button" value="Negative" onclick="assignNegative()"/>
+		</div>
+		<div class="spacer10"></div>
+		<div class="spacer10"></div>
+		
+		<table><tr>
+			<td><div class="infoIcon"></div></td>
+			<td>
+				<div class="info">
+					Sentiment analysis involves classifying opinions in text into categories like "positive" or "negative".
+					The classifier evaluation framework will compile the training database into a sentiment analysis model for later use.
+				</div>
+			</td>
+		</tr></table>
+		
+		<div>
+			<table><tr>
+				<td><input type="button" value="Rebuild the model" onclick="rebuildModel()"/></td>
+				<td width="100%"></td>
+				<td><input type="button" value="More.." onclick="gotoDBAnalysis()"> </td>
+			</tr></table>
+		</div>
 	</div>
-	<div id="resultsForm">
-<%
-	String searchTerm = request.getParameter("txtSearchTerm");
-	
 
-%>
-	</div>
+	<table cellpadding="0" cellspacing="0" width="100%"><tr>
+		<td><img alt="" src="../images/home/header-hl-left.png"></img></td>
+		<td width="100%" style="background-image: url('../images/home/header-hl-mid.png'); background-repeat: repeat-x"></td>
+		<td><img alt="" src="../images/home/header-hl-right.png"></img></td>
+	</tr></table>
+	
+	<div id="footer">Project By Greeshma T.R.</div>
+
 </div>
 </td></tr>
 </table>

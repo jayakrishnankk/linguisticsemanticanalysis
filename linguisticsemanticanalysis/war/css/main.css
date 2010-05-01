@@ -178,3 +178,6 @@ li a:active {color:#0000FF;} /* selected link */
 	width:24px;
 	z-index:2;
 }
+.loading {
+	background-image: url(../images/common/loading.gif);
+}

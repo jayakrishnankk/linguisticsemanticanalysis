@@ -26,3 +26,16 @@ div .movieReviewContainer {
 	width: 16px;
 	background-image: url(../images/common/info_icon.jpg);
 }
+
+#sentimentIconHolder {
+	height: 40px;
+	width: 40px;
+}
+
+.neg {
+	background-image: url(../images/sentiment/neg.png);
+}
+
+.pos {
+	background-image: url(../images/sentiment/pos.png);
+}

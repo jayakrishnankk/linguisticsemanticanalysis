@@ -26,22 +26,35 @@
 		params[params.length] = "txtReviewContent="+document.sentimentForm.txtReviewContent.value.replace("&", "%26");
 		var url = "<%=request.getContextPath()%>/singleMovieSentiment.htm";
 		var transaction = YAHOO.util.Connect.asyncRequest('POST', url, handleAPIResult, params.join("&"));
+		document.getElementById("sentimentIconHolder").className = "loading";
 	}
 
 	var handleAPIResult = {
+		errorCount: 0,
+		errorMessages: [
+		        		"An unexpected error happened. Please try again.",
+		        		"Oops! This might be a problem with the network connectivity.",
+		        		"Well, it seems you are not lucky today.",
+		        		"Very sorry for your inconvenience. We will make sure this will not happen again. Have a great Day."],
 		success: function(o) {
+			this.errorCount=0;
+			if (o.responseText == "pos") {
+				document.getElementById("sentimentIconHolder").className = "pos";
+			} else if (o.responseText == "neg") {
+				document.getElementById("sentimentIconHolder").className = "neg";
+			} else {
+				document.getElementById("sentimentIconHolder").className = "";
+			}
 			alert(o.responseText);
 		},
 	  	failure: function(o) {
-			alert(o.responseText);
+		  	alert(this.errorMessages[this.errorCount]);
+		  	if (this.errorCount < 3) this.errorCount++;
+		  	document.getElementById("sentimentIconHolder").className = "";
 		},
 	  	argument: []
 	};
 		
-	function saveForBatchProcessing() {
-		alert('save for batch processing');
-	}
-
 	function assignPositive() {
 		alert('assign positive');
 	}
@@ -80,11 +93,9 @@
 			</div>
 		</div>
 		<div>
-			<span><input type="button" value="Find Sentiment" onclick="findSentiment()"></span>
-			<span id="sentimentIconHolder"></span>
+			<span><input type="button" value="Find Sentiment" onclick="findSentiment()"/></span>
+			<table align="center" width="100%"><tr><td width="100%" align="center"><div id="sentimentIconHolder"></div></td></tr></table>
 		</div>
-		<div class="spacer10"></div>
-		<div class="spacer10"></div>
 		<div class="spacer10"></div>
 		<div class="wrongSentimentDialog">
 			Do you think the sentiment shown above is wrong?

@@ -10,18 +10,19 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		</property>	
 	</bean>
 
-	<bean id="sentimentServices" class="com.gree.lsa.services.SentimentServices"/>
-
 	<bean id="sentimentDelegate" class="com.gree.lsa.web.delegate.SentimentDelegate">
 		<property name="sentimentServices">
 			<ref bean="sentimentServices" />
 		</property>
 	</bean>
 
-	<bean id="sentimentController" class="com.gree.lsa.web.controller.SingleMovieSentimentController">
-		<property name="sentimentDelegate">
-			<ref bean="sentimentDelegate" />
+	<bean id="sentimentServices" class="com.gree.lsa.services.SentimentServices">
+		<property name="sentimentDAO">
+			<ref bean="sentimentDAO" />
 		</property>
 	</bean>
+	
+	<bean id="sentimentDAO" class="com.gree.lsa.dao.SentimentDAOImpl"/>
+
 
 </beans>

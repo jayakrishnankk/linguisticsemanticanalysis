@@ -7,11 +7,37 @@
 <title>Sentiment Analysis</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/sentiment.css" />
+<script src="http://yui.yahooapis.com/2.8.0r4/build/yuiloader/yuiloader-min.js"></script>
+<script type="text/javascript">
+	var loader = new YAHOO.util.YUILoader({
+	    require: ["connection", "json"],
+	    loadOptional: true,
+	    onSuccess: function() {},
+	    timeout: 10000,
+	    combine: true
+	});
+	 
+	loader.insert();
+</script>
 <script type="text/javascript">
 	function findSentiment() {
-		alert('find sentiment');
+		var params = [];
+		params[params.length] = "txtMovieName="+document.sentimentForm.txtMovieName.value.replace("&", "%26");
+		params[params.length] = "txtReviewContent="+document.sentimentForm.txtReviewContent.value.replace("&", "%26");
+		var url = "<%=request.getContextPath()%>/singleMovieSentiment.htm";
+		var transaction = YAHOO.util.Connect.asyncRequest('POST', url, handleAPIResult, params.join("&"));
 	}
 
+	var handleAPIResult = {
+		success: function(o) {
+			alert(o.responseText);
+		},
+	  	failure: function(o) {
+			alert(o.responseText);
+		},
+	  	argument: []
+	};
+		
 	function saveForBatchProcessing() {
 		alert('save for batch processing');
 	}
@@ -41,6 +67,7 @@
 		<jsp:param value="" name=""/>
 	</jsp:include>
 	<div class="spacer10"></div>
+	<form name="sentimentForm">
 	<div class="movieReviewContainer">
 		<div id="moviewReviewContent">
 			<div class="formItem">
@@ -95,6 +122,7 @@
 			</tr></table>
 		</div>
 	</div>
+</form>
 
 	<table cellpadding="0" cellspacing="0" width="100%"><tr>
 		<td><img alt="" src="../images/home/header-hl-left.png"></img></td>
@@ -103,7 +131,6 @@
 	</tr></table>
 	
 	<div id="footer">Project By Greeshma T.R.</div>
-
 </div>
 </td></tr>
 </table>

@@ -6,19 +6,37 @@
 <web-app>
   
   <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.gree.lsa.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/linguisticsemanticanalysis/greet</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>SpringServlet</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>
+				/WEB-INF/SpringServlet-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+    	<servlet-name>greetServlet</servlet-name>
+    	<servlet-class>com.gree.lsa.server.GreetingServiceImpl</servlet-class>
+  	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SpringServlet</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet-mapping>
+    	<servlet-name>greetServlet</servlet-name>
+    	<url-pattern>/linguisticsemanticanalysis/greet</url-pattern>
+  	</servlet-mapping>
   
   <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>Linguisticsemanticanalysis.html</welcome-file>
-  </welcome-file-list>
+  	<welcome-file-list>
+    	<welcome-file>Linguisticsemanticanalysis.html</welcome-file>
+  	</welcome-file-list>
 
 </web-app>

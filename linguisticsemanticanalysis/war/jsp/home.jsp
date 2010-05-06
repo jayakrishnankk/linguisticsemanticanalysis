@@ -22,11 +22,8 @@
 				<div class="lblModule lblSentiment"><a href="sentimentanalysis.jsp">Sentiment Analysis</a></div>
 			</div>
 		</td>
-		<td align="center">
-			<div class="boundBox boundBoxCluster">
-				<div class="imgBound imgClusterBound"><img src="../images/home/cluster.png"></img></div>
-				<div class="lblModule lblCluster"><a href="#####">Clustering</a></div>
-			</div>
+		<td align="center" width="20">
+			
 		</td>
 		<td align="center">
 			<div class="boundBox boundBoxDatabase">
@@ -41,6 +38,7 @@
 		</tr></table>
 
 		<div class="spacer10"></div>
+		<div class="spacer10"></div>
 		
 		<table cellpadding="0" cellspacing="0" align="center"><tr>
 		<td align="left">
@@ -53,15 +51,8 @@
 				</ul>
 			</div>
 		</td>
-		<td align="left">
-			<div class="moreBox">
-				<ul>
-					<li><a href="#">A technique for grouping objects based on similarity.</a></li>
-					<li><a href="##">Is Cpt. John J. Smith same as Captain J. J. Smith. Find out..</a></li>
-					<li><a href="###">Where to get the training corpora?</a></li>
-					<li><a href="####">More..</a></li>
-				</ul>
-			</div>
+		<td align="center" width="20">
+			
 		</td>
 		<td align="left">
 			<div class="moreBox">
@@ -77,6 +68,8 @@
 	</div>
 
 	<div class="spacer10"></div>
+	<div class="spacer10"></div>
+	
 	<table cellpadding="0" cellspacing="0" width="100%"><tr>
 		<td><img alt="" src="../images/home/header-hl-left.png"></img></td>
 		<td width="100%" style="background-image: url('../images/home/header-hl-mid.png'); background-repeat: repeat-x"></td>

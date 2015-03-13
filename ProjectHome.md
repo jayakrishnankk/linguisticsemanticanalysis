@@ -1,0 +1,1 @@
+The aim of this project is to develop a Natural Language Processing system.
